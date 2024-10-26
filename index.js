@@ -17,16 +17,17 @@ document.addEventListener('click', (e) => {
 
 var previousSearch
 addSubredditBtn.addEventListener('click', async () => {
-    const addSubredditInput = document.getElementById('name-input').value
-    if(previousSearch == addSubredditInput) {
+    const subredditInput = document.getElementById('name-input').value
+    if (previousSearch == subredditInput) {
         document.getElementById('err-fetch').style.display = 'block'
         document.getElementById('err-fetch').textContent = "already exits"
     } else {
 
         try {
-            const data = await getData(addSubredditInput)
+            const data = await getData(subredditInput)
+            localStorage.setItem(subredditInput, JSON.stringify(data.data.children))
             addPostsContainer(data.data.children)
-            previousSearch = addSubredditInput
+            previousSearch = subredditInput
         } catch {
             console.error("couldnt get data")
         }
@@ -80,6 +81,7 @@ function makePostHtml(data) {
 
 function removeContainer(id) {
     document.getElementById(id).outerHTML = ''
+    localStorage.removeItem(id)
 }
 
 
@@ -100,9 +102,15 @@ async function refreshContainer(id) {
 }
 
 
+(function () {
+    for (const item in localStorage) {
+        if (typeof (localStorage[item]) == "string") {
+            const data = JSON.parse(localStorage[item])
+            addPostsContainer(data)
 
-
-
+        }
+    }
+})()
 
 
 

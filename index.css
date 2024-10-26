@@ -1,9 +1,11 @@
 html {
     margin: 0;
 }
+
 * {
     box-sizing: border-box;
 }
+
 body {
     display: flex;
     justify-content: center;
@@ -26,15 +28,18 @@ body {
     justify-content: flex-start;
     position: relative;
 }
+
 .subreddit-container {
     display: flex;
 }
+
 .posts-container {
     padding: 10px 25px;
     border-right: 2px solid black;
     overflow: scroll;
     width: 300px;
 }
+
 .post-head {
     display: flex;
     align-items: center;
@@ -43,9 +48,11 @@ body {
     position: relative;
     font-size: 1.4rem;
 }
+
 .post-head img {
     width: 20px;
 }
+
 .menu {
     display: none;
     position: absolute;
@@ -57,12 +64,14 @@ body {
     top: 60px;
     z-index: 1;
 }
+
 .menu p {
     margin: 0;
     padding: 5px 10px;
     cursor: pointer;
 
 }
+
 .menu p:first-child {
     border-bottom: 2px solid black;
 }
@@ -77,9 +86,11 @@ body {
     padding-left: 15px;
     align-items: center;
 }
+
 .add-subreddit {
     position: relative;
 }
+
 .add-btn {
     display: block;
     border: 1px solid black;
@@ -89,6 +100,7 @@ body {
     cursor: pointer;
 
 }
+
 .modal-box {
     position: absolute;
     top: 65px;
@@ -104,11 +116,13 @@ body {
     padding: 1em;
     display: none;
     z-index: 1000;
-    
+
 }
+
 .modal-box p {
     margin: 10px 0;
 }
+
 .name-input {
     border: 2px solid black;
     border-radius: 5px;
@@ -116,6 +130,7 @@ body {
     height: 35px;
     width: 100%;
 }
+
 .modalbox-btn {
     background-color: black;
     color: white;
@@ -124,11 +139,13 @@ body {
     border-radius: 5px;
     width: 100%;
 }
+
 #err-fetch {
     display: none;
     color: red;
     text-align: center;
 }
+
 .show {
     display: block;
 }
