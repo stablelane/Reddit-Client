@@ -18,7 +18,7 @@
 <body>
     <div class="container">
         <div id="subreddit-container" class="subreddit-container">
-            <div class="posts-container">
+            <!-- <div class="posts-container">
                 <div class="post-head">
                     <p class="subreddit-name">/r/javascript</p>
                     <img src="icon/dots.png" alt="" class="option-menu">
@@ -35,16 +35,17 @@
                     <p class="post-id">431</p>
                     <p class="post-name">Post-title here</p>
                 </div>
-            </div>
+            </div> -->
             
         </div>
     
     <div class="add-subreddit">
         <b class="add-btn">+</b>
-        <div class="modal-box">
+        <div id="modal-box" class="modal-box">
             <p>Enter the name of subreddit</p>
             <input type="text" id="name-input" class="name-input">
             <button class="modalbox-btn" id="modalbox-btn">Add subreddit</button>
+            <p id="err-fetch">Subreddit Unavailable</p>
         </div>
     </div>
 

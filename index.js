@@ -21,9 +21,15 @@ addSubredditBtn.addEventListener('click', async () => {
 })
 
 async function getData(name) {
-    const res = await fetch(`https://www.reddit.com/r/${name}.json`)
-    const data = await res.json()
-    return data
+    try{
+        const res = await fetch(`https://www.reddit.com/r/${name}.json`)
+        const data = await res.json()
+        document.getElementById('err-fetch').style.display = 'none'
+        return data
+    }
+    catch {
+        document.getElementById('err-fetch').style.display = 'block'
+    }
 }
 
 function addPostsContainer(data) {

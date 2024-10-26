@@ -120,3 +120,8 @@ body {
     padding: 10px 20px;
     border-radius: 5px;
 }
+#err-fetch {
+    display: none;
+    color: red;
+    text-align: center;
+}
