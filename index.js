@@ -10,18 +10,24 @@ document.addEventListener('click', (e) => {
         removeContainer(e.target.dataset.post)
     } else if (e.target.dataset.post && e.target.id == 'refresh') {
         refreshContainer(e.target.dataset.post)
+    } else if (e.target.id == "show-searchModal") {
+        document.getElementById("modal-box").classList.toggle('show')
     }
 })
 
 addSubredditBtn.addEventListener('click', async () => {
     const addSubredditInput = document.getElementById('name-input').value
-    const data = await getData(addSubredditInput)
-    addPostsContainer(data.data.children)
+    try {
+        const data = await getData(addSubredditInput)
+        addPostsContainer(data.data.children)
+    } catch {
+        console.error("couldnt get data")
+    }
 
 })
 
 async function getData(name) {
-    try{
+    try {
         const res = await fetch(`https://www.reddit.com/r/${name}.json`)
         const data = await res.json()
         document.getElementById('err-fetch').style.display = 'none'
