@@ -2,30 +2,28 @@ const subredditContainer = document.getElementById('subreddit-container')
 
 const addSubredditBtn = document.getElementById('modalbox-btn')
 
-document.addEventListener('click',(e) => {
-    if(e.target.dataset.postmenu) {
+document.addEventListener('click', (e) => {
+    if (e.target.dataset.postmenu) {
         console.log(e.target.dataset.postmenu)
         document.getElementById(e.target.dataset.postmenu).classList.toggle('show')
-    } else if(e.target.dataset.post) {
+    } else if (e.target.dataset.post && e.target.id == 'remove') {
         removeContainer(e.target.dataset.post)
-    } else if(e.target.dataset.post && e.target.id == refresh) {
+    } else if (e.target.dataset.post && e.target.id == 'refresh') {
         refreshContainer(e.target.dataset.post)
     }
 })
 
-addSubredditBtn.addEventListener('click',async ()=> {
-    const data = await getData()
+addSubredditBtn.addEventListener('click', async () => {
+    const addSubredditInput = document.getElementById('name-input').value
+    const data = await getData(addSubredditInput)
     addPostsContainer(data.data.children)
 
 })
 
-async function getData() {
-    console.log('helo')
-    const addSubredditInput = document.getElementById('name-input').value
-    const res = await fetch(`https://www.reddit.com/r/${addSubredditInput}.json`)
+async function getData(name) {
+    const res = await fetch(`https://www.reddit.com/r/${name}.json`)
     const data = await res.json()
     return data
-
 }
 
 function addPostsContainer(data) {
@@ -36,11 +34,12 @@ function addPostsContainer(data) {
                                             <p class="subreddit-name">/r/${data[0].data.subreddit}</p>
                                             <img data-postMenu="${data[0].data.id}" src="icon/dots.png" alt="" class="option-menu">
                                             <div class="menu" id="${data[0].data.id}">
-                                                <p class="refresh" id="refresh">Refresh</p>
+                                                <p class="refresh" data-post="${data[0].data.subreddit}" id="refresh">Refresh</p>
                                                 <p id="remove"  data-post="${data[0].data.subreddit}"  class="remove">Delete</p>
                                             </div>
                                         </div>
-                                        ${postsHtml}`
+                                        ${postsHtml}
+                                        </div>`
 }
 
 
@@ -65,8 +64,19 @@ function removeContainer(id) {
 
 
 
-function refreshContainer(id) {
-    document.getElementById(id).innerHTML = ''
+async function refreshContainer(id) {
+    const postDetails = await getData(id)
+    const data = postDetails.data.children
+    const postsHtml = makePostHtml(data)
+    document.getElementById(id).innerHTML = `<div class="post-head">
+                                            <p class="subreddit-name">/r/${data[0].data.subreddit}</p>
+                                            <img data-postMenu="${data[0].data.id}" src="icon/dots.png" alt="" class="option-menu">
+                                            <div class="menu" id="${data[0].data.id}">
+                                                <p class="refresh" data-post="${data[0].data.subreddit}" id="refresh">Refresh</p>
+                                                <p id="remove"  data-post="${data[0].data.subreddit}"  class="remove">Delete</p>
+                                            </div>
+                                        </div>
+                                        ${postsHtml}`
 }
 
 
@@ -79,4 +89,3 @@ function refreshContainer(id) {
 
 
 
-    
