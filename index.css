@@ -10,6 +10,7 @@ body {
     align-items: center;
     min-height: 100dvh;
     margin: 0;
+
 }
 
 .container {
@@ -21,7 +22,6 @@ body {
     border-radius: 20px;
     margin: auto;
     font-family: "Roboto", sans-serif;
-    overflow: scroll;
     display: flex;
     justify-content: flex-start;
     position: relative;
@@ -81,18 +81,19 @@ body {
     position: relative;
 }
 .add-btn {
+    display: block;
     border: 1px solid black;
     border-radius: 50%;
-    width: 25px;
     margin: 10px 25px;
-    padding: 10px;
+    padding: 10px 15px;
     cursor: pointer;
 
 }
 .modal-box {
     position: absolute;
     top: 65px;
-    right: -265px;
+    right: 0px;
+    left: 100px;
     background-color: #fff;
     height: fit-content;
     display: flex;
@@ -102,6 +103,7 @@ body {
     border-radius: 10px;
     padding: 1em;
     display: none;
+    z-index: 1000;
     
 }
 .modal-box p {
@@ -112,6 +114,7 @@ body {
     border-radius: 5px;
     margin-bottom: 10px;
     height: 35px;
+    width: 100%;
 }
 .modalbox-btn {
     background-color: black;
@@ -119,6 +122,7 @@ body {
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
+    width: 100%;
 }
 #err-fetch {
     display: none;

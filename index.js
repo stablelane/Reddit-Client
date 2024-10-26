@@ -15,13 +15,21 @@ document.addEventListener('click', (e) => {
     }
 })
 
+var previousSearch
 addSubredditBtn.addEventListener('click', async () => {
     const addSubredditInput = document.getElementById('name-input').value
-    try {
-        const data = await getData(addSubredditInput)
-        addPostsContainer(data.data.children)
-    } catch {
-        console.error("couldnt get data")
+    if(previousSearch == addSubredditInput) {
+        document.getElementById('err-fetch').style.display = 'block'
+        document.getElementById('err-fetch').textContent = "already exits"
+    } else {
+
+        try {
+            const data = await getData(addSubredditInput)
+            addPostsContainer(data.data.children)
+            previousSearch = addSubredditInput
+        } catch {
+            console.error("couldnt get data")
+        }
     }
 
 })
