@@ -48,7 +48,7 @@ async function getData(name) {
 }
 
 function addPostsContainer(data) {
-    console.log(data[0].data.subreddit)
+    // console.log(data[0].data.subreddit)
     const postsHtml = makePostHtml(data)
     subredditContainer.innerHTML += `<div id="${data[0].data.subreddit}" class="posts-container">
                                         <div class="post-head">
@@ -81,7 +81,7 @@ function makePostHtml(data) {
 
 function removeContainer(id) {
     document.getElementById(id).outerHTML = ''
-    localStorage.removeItem(id)
+    localStorage.removeItem(id.toLowerCase())
 }
 
 
