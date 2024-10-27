@@ -14,11 +14,13 @@ body {
     margin: 0;
 
 }
+.parent-wrapper {
+    display: flex;
+}
 
 .container {
-    min-width: 600px;
     max-width: 1010px;
-    width: 80%;
+    width: 80vw;
     height: 60vh;
     border: 3px solid black;
     border-radius: 20px;
@@ -27,6 +29,7 @@ body {
     display: flex;
     justify-content: flex-start;
     position: relative;
+    overflow: scroll;
 }
 
 .subreddit-container {
@@ -89,23 +92,27 @@ body {
 
 .add-subreddit {
     position: relative;
+
 }
 
 .add-btn {
+    position: absolute;
+    left: -70px;
     display: block;
     border: 1px solid black;
     border-radius: 50%;
     margin: 10px 25px;
-    padding: 10px 15px;
+    padding: 5px 12px;
     cursor: pointer;
+    background-color: black;
+    color: #fff;
 
 }
 
 .modal-box {
     position: absolute;
-    top: 65px;
-    right: 0px;
-    left: 100px;
+    top: 215px;
+    right: 400px;
     background-color: #fff;
     height: fit-content;
     display: flex;
@@ -116,6 +123,7 @@ body {
     padding: 1em;
     display: none;
     z-index: 1000;
+    box-shadow: 5px 10px;
 
 }
 

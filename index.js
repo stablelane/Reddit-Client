@@ -5,7 +5,7 @@ const addSubredditBtn = document.getElementById('modalbox-btn')
 document.addEventListener('click', (e) => {
     if (e.target.dataset.postmenu) {
         console.log(e.target.dataset.postmenu)
-        document.getElementById(e.target.dataset.postmenu).classList.toggle('show')
+        document.getElementById(e.target.dataset.postmenu).classList.toggle('show')      
     } else if (e.target.dataset.post && e.target.id == 'remove') {
         removeContainer(e.target.dataset.post)
     } else if (e.target.dataset.post && e.target.id == 'refresh') {
@@ -26,8 +26,10 @@ addSubredditBtn.addEventListener('click', async () => {
             const data = await getData(subredditInput)
             localStorage.setItem(subredditInput, JSON.stringify(data.data.children))
             addPostsContainer(data.data.children)
+            document.getElementById("modal-box").classList.toggle('show')
+
         } catch {
-            console.error("couldnt get data")
+            document.getElementById('err-fetch').style.display = 'block'
         }
     }
 
