@@ -15,10 +15,9 @@ document.addEventListener('click', (e) => {
     }
 })
 
-var previousSearch
 addSubredditBtn.addEventListener('click', async () => {
     const subredditInput = document.getElementById('name-input').value
-    if (previousSearch == subredditInput) {
+    if (localStorage.getItem(subredditInput)) {
         document.getElementById('err-fetch').style.display = 'block'
         document.getElementById('err-fetch').textContent = "already exits"
     } else {
@@ -27,7 +26,6 @@ addSubredditBtn.addEventListener('click', async () => {
             const data = await getData(subredditInput)
             localStorage.setItem(subredditInput, JSON.stringify(data.data.children))
             addPostsContainer(data.data.children)
-            previousSearch = subredditInput
         } catch {
             console.error("couldnt get data")
         }
